@@ -16,7 +16,7 @@ class Article
 
     public function getURL()
     {
-        return '?p=articles&id=' . $this->id;
+        return '?p=article&id=' . $this->id;
     }
 
     public function getExtrait()
