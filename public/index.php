@@ -28,6 +28,8 @@ if ($p === 'home') {
     require '../pages/home.php';
 } elseif ($p === 'article') {
     require '../pages/single.php';
+} elseif ($p === 'categorie') {
+    require '../pages/category.php';
 }
 $content = ob_get_clean();
 
