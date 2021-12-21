@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace Core\Database;
 
 use \PDO;
 
 class Database
 {
-    private $pdo;
+ /*   private $pdo;
 
 
     public function __construct(
@@ -60,5 +60,5 @@ class Database
         }
         //
         return $datas;
-    }
+    }*/
 }

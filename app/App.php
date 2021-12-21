@@ -1,46 +1,67 @@
 <?php
 
-namespace App;
+use Core\Config;
+use Core\Database\MysqlDatabase;
 
 class App
 {
-    const DB_NAME = 'bblog';
-    const DB_USER = 'root';
-    const DB_PASS = '';
-    const DB_HOST = 'localhost';
 
-    private static $title = "Mon super site";
+    public  $title = "Mon super site";
+    private  $db_instance;
+
+    private static $_instance;
 
 
-    private static $database;
-
-    public static function getDb()
+    public static function getInstance()
     {
-        if (self::$database === null) {
-            self::$database = new Database(
-                self::DB_NAME,
-                self::DB_USER,
-                self::DB_PASS,
-                self::DB_HOST
+        if (self::$_instance ===  NULL) {
+            self::$_instance = new App();
+        }
+
+        return self::$_instance;
+    }
+
+
+    public function getTable($name)
+    {
+        $class_name = "\\App\\Table\\" . ucfirst($name) . 'Table';
+        return new $class_name($this->getDb());
+    }
+
+    public static function load()
+    {
+        session_start();
+        require ROOT . "/app/Autoloader.php";
+        App\Autoloader::register();
+        require ROOT . "/Core/Autoloader.php";
+        Core\Autoloader::register();
+    }
+
+
+
+
+    public function getDb()
+    {
+        if ($this->db_instance === null) {
+            $config = Config::getInstance(ROOT . "/config/config.php");
+
+            $this->db_instance = new MysqlDatabase(
+                $config->get('db_name'),
+                $config->get('db_user'),
+                $config->get('db_pass'),
+                $config->get('db_host'),
             );
         }
 
-        return self::$database;
+        return $this->db_instance;
     }
 
-    public static function notFound()
+
+
+    public function notFound()
     {
 
         header("HTTP/1.0 404 Not Found");
         header("Location:./?p=404");
-    }
-
-    public static function getTitle() {
-        return self::$title;
-    }
-
-    
-    public static function setTitle($title) {
-        self::$title = $title;
     }
 }

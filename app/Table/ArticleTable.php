@@ -3,17 +3,28 @@
 namespace App\Table;
 
 use App\App;
+use Core\Table\Table;
 
-class Article extends Table
+class ArticleTable extends Table
 {
 
 
-    protected static $table = 'articles';
+    protected $table = 'articles';
 
-
-    public static function find($id)
+    public function last()
     {
-        return self::query("
+        return $this->query("
+            SELECT a.*, c.id, c.titre categorie
+            FROM articles a
+            LEFT JOIN categories c ON a.category_id=c.id
+            ORDER BY a.date DESC
+        ");
+    }
+
+
+    public function find($id)
+    {
+        return $this->query("
             SELECT a.*, c.id, c.titre categorie
             FROM articles a
             LEFT JOIN categories c ON a.category_id=c.id
@@ -21,18 +32,18 @@ class Article extends Table
     ", [$id], true);
     }
 
-    public static function getLast()
+    public function getLast()
     {
-        return self::query("
+        return $this->query("
             SELECT a.*, c.id, c.titre categorie
             FROM articles a
             LEFT JOIN categories c ON a.category_id=c.id
         ");
     }
 
-    public static function lastByCategorie($id)
+    public function lastByCategorie($id)
     {
-        return self::query("
+        return $this->query("
             SELECT a.*, c.id, c.titre categorie
             FROM articles a
             LEFT JOIN categories c ON a.category_id=c.id
@@ -40,15 +51,4 @@ class Article extends Table
         ", [$id]);
     }
 
-    public function getURL()
-    {
-        return '?p=article&id=' . $this->id;
-    }
-
-    public function getExtrait()
-    {
-        $html = '<p>' . substr($this->contenu, 0, 50) . '...</p>';
-        $html .= '<p><a href="' . $this->url . '">Voir la suite</a></p>';
-        return $html;
-    }
 }

@@ -3,11 +3,12 @@
 namespace App\Table;
 
 use App\App;
+use Core\Table\Table;
 
-class Categorie extends Table
+class CategorieTable extends Table
 {
 
-    protected static $table = 'categories';
+    protected $table = 'categories';
 
     public function __get($key)
     {

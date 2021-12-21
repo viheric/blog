@@ -1,17 +1,14 @@
 <?php
 
-use App\App;
-use App\Table\Categorie;
-use App\Table\Article;
+$app = App::getInstance();
 
-
-$post = Article::find($_GET['id']);
-if ($post === false) {
-    App::notFound();
+$post = $app->getTable('article')->find($_GET['id']);
+if($post === false) {
+    $app->notFound();
 }
 
 //$categorie = Categorie::find($post->category_id);
-$categories = Categorie::all();
+$categories = $app->getTable('categorie')->all();
 ?>
 
 

@@ -1,17 +1,15 @@
 <?php
 
-use App\App;
-use App\Table\Categorie;
-use App\Table\Article;
+$app = App::getInstance();
 
-$categorie = Categorie::find($_GET['id']);
+$categorie = $app->getTable('categorie')->find($_GET['id']);
 
 if($categorie === false) {
-    App::notFound();
+    $app->notFound();
 }
 
-$articles = Article::lastByCategorie($_GET['id']);
-$categories = Categorie::all();
+$articles = $app->getTable('article')->lastByCategorie($_GET['id']);
+$categories = $app->getTable('categorie')->all();
 ?>
 <div class="row align-items-start">
     <div class="col-8">
