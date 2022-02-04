@@ -31,10 +31,10 @@ class App
     public static function load()
     {
         session_start();
-        require ROOT . "/app/Autoloader.php";
+        /*require ROOT . "/app/Autoloader.php";
         App\Autoloader::register();
         require ROOT . "/Core/Autoloader.php";
-        Core\Autoloader::register();
+        Core\Autoloader::register();*/
     }
 
 
@@ -60,7 +60,6 @@ class App
 
     public function notFound()
     {
-
         header("HTTP/1.0 404 Not Found");
         header("Location:./?p=404");
     }

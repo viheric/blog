@@ -2,8 +2,13 @@
 
 define('ROOT', dirname(__DIR__));
 
+/*
 require ROOT . '/app/App.php';
 require ROOT . '/core/helpers/functions.php';
+*/
+
+require ROOT . '/vendor/autoload.php';
+
 
 App::load();
 
