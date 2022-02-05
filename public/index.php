@@ -7,7 +7,7 @@ require ROOT . '/app/App.php';
 require ROOT . '/core/helpers/functions.php';
 */
 
-require ROOT . '/vendor/autoload.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 
 App::load();

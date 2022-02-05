@@ -10,10 +10,11 @@ class MysqlDatabase extends Database
 
 
     public function __construct(
-        private $db_name,
-        private $db_user = 'root',
-        private $db_pass = '',
-        private $db_host = 'localhost'
+        private string $db_name,
+        private string $db_user = 'root',
+        private string $db_pass = '',
+        private string $db_host = 'localhost',
+        private mixed $db_port = '3308'
     ) {
     }
 
@@ -21,7 +22,7 @@ class MysqlDatabase extends Database
     {
         if ($this->pdo === null) {
             $pdo = new PDO(
-                'mysql:dbname=' . $this->db_name . ';host=' . $this->db_host . ';',
+                'mysql:dbname=' . $this->db_name . ';host=' . $this->db_host . ';port=' . $this->db_port . ';',
                 $this->db_user,
                 $this->db_pass
             );
@@ -37,32 +38,59 @@ class MysqlDatabase extends Database
     public function query($statement, $class_name = null, $one = false)
     {
         $req = $this->getPDO()->query($statement);
+
+        return $this->fetchData($req, $class_name, $one);
+        /*
         if ($class_name !== null)
             $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
         else
-            $req->setFetchMode(PDO::FETCH_OBJ, $class_name);
+            $req->setFetchMode(PDO::FETCH_OBJ);
         //
         if ($one) {
             $datas = $req->fetch();
         } else {
             $datas = $req->fetchAll();
         }
-        return $datas;
+        return $datas;*/
     }
 
     public function prepare($statement, $attributes, $class_name = null, $one = false)
     {
         $req = $this->getPDO()->prepare($statement);
-        $req->execute($attributes);
+
+        return $this->fetchData($req, $class_name, $one, $attributes);
+/*
+        if (is_array($attributes))
+            $req->execute($attributes);
+
         if ($class_name !== null)
             $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
         else
-            $req->setFetchMode(PDO::FETCH_OBJ, $class_name);
+            $req->setFetchMode(PDO::FETCH_OBJ);
         //
         if ($one) {
             $datas = $req->fetch();
         } else {
             $datas = $req->fetchAll();
+        }
+        //
+        return $datas;*/
+    }
+
+    private function fetchData($pdo_obj, $class_name = null, $one = false, $attributes = null)
+    {
+        if (is_array($attributes))
+            $pdo_obj->execute($attributes);
+
+        if ($class_name !== null)
+            $pdo_obj->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        else
+            $pdo_obj->setFetchMode(PDO::FETCH_OBJ);
+        //
+        if ($one) {
+            $datas = $pdo_obj->fetch();
+        } else {
+            $datas = $pdo_obj->fetchAll();
         }
         //
         return $datas;

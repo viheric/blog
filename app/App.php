@@ -50,6 +50,7 @@ class App
                 $config->get('db_user'),
                 $config->get('db_pass'),
                 $config->get('db_host'),
+                $config->get('db_port'),
             );
         }
 
