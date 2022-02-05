@@ -21,6 +21,7 @@
     <coverage>
         <include>
             <directory suffix=".php">app</directory>
+            <directory suffix=".php">core</directory>
         </include>
     </coverage>
 
