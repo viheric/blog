@@ -34,4 +34,11 @@
             "organizer": "Carey Wales "
         }
     ],
+    "user": [
+        {
+            "id": 1,
+            "name": "Eric Akakpo",
+            "email": "viheric@yahoo.fr"
+        }
+    ]
 }
