@@ -32,6 +32,50 @@
             "time": "11:00 ",
             "petsAllowed": false,
             "organizer": "Carey Wales "
+        },
+        {
+            "id": 1,
+            "category": "sustainability ",
+            "title": "Neighborwood Cleanup",
+            "description": "Help pick up trash around your Neighborwood.",
+            "location": "Playa Del Carmen ",
+            "date": "Sept 22, 2022 ",
+            "time": "08:00 ",
+            "petsAllowed": false,
+            "organizer": "Carey Wales "
+        },
+        {
+            "id": 2,
+            "category": "food ",
+            "title": "Foire au Smoothies",
+            "description": "Améliorez votre alimentation en apprenant des smoothie santé",
+            "location": "Flora City ",
+            "date": "April 14, 2022 ",
+            "time": "9:00 ",
+            "petsAllowed": true,
+            "organizer": "Fern Pollin "
+        },
+        {
+            "id": 3,
+            "category": "food ",
+            "title": "Halan Party",
+            "description": "Va mi dou halan",
+            "location": "Flora City ",
+            "date": "October 14, 2022 ",
+            "time": "12:00 ",
+            "petsAllowed": true,
+            "organizer": "Fern Pollin "
+        },
+        {
+            "id": 4,
+            "category": "animal welfare ",
+            "title": "Dog Adoption Day ",
+            "description": "Find your new feline friend at this event. ",
+            "location": "Meow Town ",
+            "date": "Febuary 22, 2022 ",
+            "time": "10:00 ",
+            "petsAllowed": true,
+            "organizer": "Kat Laydee "
         }
     ],
     "user": [
